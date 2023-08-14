@@ -1,58 +1,46 @@
-import susahnevideo from "../media/susahnevideo.mp4";
-import susahnevideo2 from "../media/susahnevideo2.mp4";
-import susahnevideo3 from "../media/susahnevideo.mp4";
-import susahnevideo4 from "../media/susahnevideo2.mp4";
+import hizmetler1 from "../media/hizmetler1.jpeg";
+import hizmetler2 from "../media/hizmetler2.jpeg";
+import hizmetler3 from "../media/hizmetler3.jpeg";
+import hizmetler4 from "../media/hizmetler4.jpeg";
+import hizmetler5 from "../media/hizmetler5.jpeg";
+import hizmetler6 from "../media/hizmetler6.jpeg";
+import hizmetler7 from "../media/hizmetler7.jpeg";
+
 import style from "../styles.module.scss";
-import { useState } from "react";
-import {FaChevronRight ,FaChevronLeft} from "react-icons/fa"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation, Pagination } from 'swiper/modules';
+import "./style.css"
 
 export default function Home(){
-    const [videoIndex,setVideoIndex] = useState(0);
-    const videoArray = [susahnevideo,susahnevideo2,susahnevideo3,susahnevideo4]
-    let video1;
-    let video2;
-    let video3;
-    const  slideBack = ()=>{
-        if(videoIndex === 0){
-            setVideoIndex(videoArray.length -1);
-        } else {
-            setVideoIndex(videoIndex-1)
-        }
-    }
-    const slideForward = ()=>{
-        if (videoIndex === videoArray.length-1){
-            setVideoIndex(0);
-        } else {
-            setVideoIndex(videoIndex+1)
-        }
-    }
-
-    if(videoIndex === 0){
-        video1 = videoArray[videoIndex+ videoArray.length-1];
-        video2 = videoArray[videoIndex];
-        video3 = videoArray[videoIndex+1]
-    } else if (videoIndex === videoArray.length-1){
-        video1 = videoArray[videoIndex-1];
-        video2 = videoArray[videoIndex];
-        video3 = videoArray[videoIndex - videoArray.length +1]
-    } else {
-        video1 = videoArray[videoIndex-1];
-        video2 = videoArray[videoIndex];
-        video3 = videoArray[videoIndex+1]
-    }
-
-
-
     return (
         <div id="home" className={style.home}>
-            <h3>Son Eklenenler</h3>
-            <div className={style.slider}>
-                <div onClick={slideBack} className={`${style.buttons} ${style.button_back}`}><FaChevronLeft/></div>
-                <video className={style.otherVids} src={video1} controls ></video>
-                <video src={video2} controls height="280px"></video>
-                <video className={style.otherVids} src={video3} controls ></video>
-                <div onClick={slideForward} className={`${style.buttons} ${style.button_forward}`}><FaChevronRight/></div>
-            </div>
+            <h3>Gösterilerden Kareler</h3>
+            <Swiper navigation={true} pagination={true} loop={true} modules={[Navigation,Pagination]} className={style.swiper}>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler1} alt="resim" />
+                </SwiperSlide>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler2} alt="resim" />
+                </SwiperSlide>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler3} alt="resim" />
+                </SwiperSlide>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler4} alt="resim" />
+                </SwiperSlide>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler5} alt="resim" />
+                </SwiperSlide>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler6} alt="resim" />
+                </SwiperSlide>
+                <SwiperSlide className={style.swiper_slide}>
+                    <img src={hizmetler7} alt="resim" />
+                </SwiperSlide>
+                
+            </Swiper>
         </div>
     )
 }

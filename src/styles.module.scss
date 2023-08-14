@@ -1,7 +1,8 @@
-$bg-color: #001C30;
-$light-cyan: #DAFFFB;
-$light-blue:#64CCC5;
-$white: white;
+@import "media-queries.module.scss";
+@import "colors.module.scss";
+
+
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -12,23 +13,56 @@ $white: white;
 body{
     width: 100vw;
     background-color: $bg-color;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+        
+    }
+    @include mobile{
+        
+    }
 }
 
 ////NAVBAR COMPONENT
 
 .navbar{
+    background-color: $bg-color;
+    z-index: 9999;
     position: fixed;
     display: flex;
     width: 100vw;
+    
     height: 120px;
     justify-content: space-around;
     align-items: center;
     color: $white;
     overflow-y: none;
-    img{
-        aspect-ratio: 16/9;
-        height: 120px;
-        
+    box-shadow: 0px 20px 100px rgba(255, 255, 255, 0.1);
+    .mobileContainer{
+        button{
+            border: none;
+            background: $bg-color;
+            color: $white;
+            font-size: x-large;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: none;
+        }
+        .imgContainer{
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: none;
+            
+            
+            img{
+                aspect-ratio: 16/9;
+                height: 120px;
+            }
+        }
     }
     ul{
         display: flex;
@@ -37,8 +71,10 @@ body{
         li{
          list-style: none;
          margin: 1rem; 
+         
          a{
             text-decoration: none;
+            display: inline-block;
             color: unset;
             position: relative;
             transition: color 0.2s;
@@ -49,7 +85,7 @@ body{
                 content: "";
                 position: absolute;
                 bottom: -10px;
-                height: 1.5px;
+                height: 0.5px;
                 width: 0;
                 background: $light-blue;
                 border-radius: 10px;
@@ -58,64 +94,285 @@ body{
             &:hover::before{
                 width: 100%;
             }
+            
          }  
         }
     }
-    
+    @include tablet{
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 125px;
+        box-shadow: 0px 20px 100px rgba(255, 255, 255, 0.2);
+    }
+
+    @include mobile{
+        flex-direction:column;
+        justify-content: center;
+        align-items: space-between;
+        position: -webkit-sticky;
+        top: 0;
+        position: sticky;
+        height: unset;
+        margin-top: 28px;
+        padding: 0 10px 0 10px;
+        
+        
+        .mobileContainer{
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            button{
+                display:block;
+            
+            }  
+        }
+        ul{
+            display: none;
+            
+            width: 100%;
+            flex-direction: column;
+        }
+    }
 }
 
 //// HOME COMPONENT
 
 .home{
-    height: 100vh;
+    height: 120vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    
     h3{
         color: #fff;
         margin-bottom: 2rem;
     }
     
-    .slider{
+    .swiper {
+        width: 80%;
+        height: 60vh;
+        border-radius: 10px;
+        
+      }
+      
+      .swiper_slide {
+        text-align: center;
+        font-size: 18px;
+        background: $bg-color;
+      
+        /* Center slide text vertically */
         display: flex;
-        position: relative;
         justify-content: center;
         align-items: center;
-        color: white;
-        height: 280px;
-        width: 100vw;
-        .buttons{
-            position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            img ,video{
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit:contain;
+            }
+            
+      }
+}
+
+//// ABOUT US COMPONENT
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    color: $white;
+    .aboutText{
+        width: 45%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        p{
+            color: rgba(255, 255, 255, 0.4);
+            margin-top: 1rem;
+            width: 80%;
+            max-height: 280px;
+            overflow-y: scroll;
+        }
+    }
+    img{
+        width: 40%;
+        min-width: 250px;
+        margin-left: 10%;
+    }
+    
+    @include tablet{
+      
+        flex-direction: column;
+        img{
+            width: 50%;
+            order: 1;
+            margin: 0;
+        }
+        .aboutText{
+            width:90%;
+            order: 2;
+        }
+    }
+    
+    
+
+}
+
+
+////CONTACT COMPONENT
+/// 
+.contact{
+    color: $white;
+    position: relative;
+    width: 100%;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid $white;
+ 
+    .contactText{
+        letter-spacing: 5px;
+    }
+    ul{
+        display: flex;
+        margin-left: 3rem;
+        li{
+            list-style: none;
+            margin: 1rem;
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            color: $light-blue;
-            background: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-        }
-        .otherVids{
-            filter: blur(4px);
-            -webkit-filter: blur(4px);
-            height: 260px;
-        }
-        .button_back{
-            
-            top: 100px;
-            left: 25px;
-            z-index: 2;
-            
-        }
-        .button_forward{
-            top: 100px;
-            right: 25px;
-            z-index: 2;
-           
+            transition: background-color 0.3s;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+            a{
+                text-decoration: none;
+                color: unset;
+            }
         }
     }
+    @include tablet{
+        .contactText{
+            display: none;
+        }
+        ul{
+            margin-left: 0;
+        }
+        
+    }
 }
+///// Services Component
+
+.services{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .swiper {
+        width: 60%;
+        height: 60vh;
+    
+    
+        .swiperSlide {
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .sliderText{
+            position: absolute;
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            left: 30px;
+            .title{
+                font-size: 41px;
+                font-weight: 300;
+                margin: 0 0 50px 0;
+                width: 90%;
+            }
+            .subtitle{
+                font-size: 21px;
+                margin-left: 50px;
+                margin-right: 20px;
+            }
+            .text{
+                margin-right: 20px;
+                margin-left: 50px;
+                font-size: 14px;
+                max-width: 400px;
+                line-height: 1.3;  
+            }
+
+        
+    }
+    img {
+    width: 130%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+}
+@include tablet{
+    .swiper{
+        height: 50%;
+    
+    .swiperSlide{
+        .sliderText{
+            left: 10px;
+        .title{
+            font-size: 25px;
+            
+        }
+        .subtitle{
+            margin-top: 10px;
+            font-size: 15px;
+            margin-left: 20px;
+        }
+        .text{
+            font-size: 10px;
+            margin-left: 20px;
+        }
+    }
+    }
+    }
+}
+@include mobile {
+    .swiper{
+        width: 90%;
+        .swiperSlide{
+            .sliderText{
+            .title{
+                margin-top: 60px;
+            }
+        }
+        }
+    }
+    
+}
+
+}
+
+  
+  
+  
+  
+ 
