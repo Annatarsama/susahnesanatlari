@@ -1,0 +1,121 @@
+$bg-color: #001C30;
+$light-cyan: #DAFFFB;
+$light-blue:#64CCC5;
+$white: white;
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Flex', sans-serif;
+    
+}
+body{
+    width: 100vw;
+    background-color: $bg-color;
+}
+
+////NAVBAR COMPONENT
+
+.navbar{
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    height: 120px;
+    justify-content: space-around;
+    align-items: center;
+    color: $white;
+    overflow-y: none;
+    img{
+        aspect-ratio: 16/9;
+        height: 120px;
+        
+    }
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        li{
+         list-style: none;
+         margin: 1rem; 
+         a{
+            text-decoration: none;
+            color: unset;
+            position: relative;
+            transition: color 0.2s;
+            &:hover{
+                color: rgba(255, 255, 255, 0.532);
+            }
+            &::before{
+                content: "";
+                position: absolute;
+                bottom: -10px;
+                height: 1.5px;
+                width: 0;
+                background: $light-blue;
+                border-radius: 10px;
+                transition: width 0.3s ease-in-out;
+            }
+            &:hover::before{
+                width: 100%;
+            }
+         }  
+        }
+    }
+    
+}
+
+//// HOME COMPONENT
+
+.home{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    h3{
+        color: #fff;
+        margin-bottom: 2rem;
+    }
+    
+    .slider{
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        height: 280px;
+        width: 100vw;
+        .buttons{
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: $light-blue;
+            background: $white;
+            cursor: pointer;
+        }
+        .otherVids{
+            filter: blur(4px);
+            -webkit-filter: blur(4px);
+            height: 260px;
+        }
+        .button_back{
+            
+            top: 100px;
+            left: 25px;
+            z-index: 2;
+            
+        }
+        .button_forward{
+            top: 100px;
+            right: 25px;
+            z-index: 2;
+           
+        }
+    }
+}
